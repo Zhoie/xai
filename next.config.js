@@ -1,4 +1,3 @@
-
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
@@ -7,8 +6,5 @@ module.exports = {
   // future: {
   //   webpack5: true,
   // },
-};
-module.exports = {
-  reactStrictMode: true,
   // 添加您需要的其他配置
 };
