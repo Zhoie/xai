@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { ScrollArea } from "@/components/ui/scroll-area"
+import { Button } from "@/app/components/ui/button"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/app/components/ui/card"
+import { Input } from "@/app/components/ui/input"
+import { ScrollArea } from "@/app/components/ui/scroll-area"
 import type { Message } from 'ai'
 
 export default function Chat() {
