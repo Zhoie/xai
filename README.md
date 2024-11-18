@@ -43,6 +43,16 @@ This project includes:
 - Integration with Vercel deployment
 - XAI functionality demonstration
 
+## Troubleshooting
+
+If the components are not displaying correctly, ensure the following:
+
+1. The `tsconfig.json` file has the correct `baseUrl` and does **not** include `jsxImportSource` unless using Emotion.
+2. The `components.json` file has updated alias paths pointing to `@/app/components`.
+3. The `tailwind.config.ts` file includes the correct paths in the `content` array.
+4. Run `npm install` to ensure all dependencies are installed after making these changes.
+5. Run `npm run dev` to restart the development server after making these changes.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
