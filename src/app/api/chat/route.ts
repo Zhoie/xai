@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
 
-const apiKey = process.env.XAI_API_KEY;
+const apiKeyEnv = process.env.XAI_API_KEY;
 
 export async function POST(req: Request) {
   try {
-    const { messages } = await req.json();
+    const { messages, apiKey } = await req.json();
     console.log('Received messages:', messages);
+    console.log('Received API Key:', apiKey ? 'User provided' : 'Using default');
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return NextResponse.json(
@@ -14,15 +15,24 @@ export async function POST(req: Request) {
       );
     }
 
+    const effectiveApiKey = apiKey?.trim() || apiKeyEnv;
+
+    if (!effectiveApiKey) {
+      return NextResponse.json(
+        { error: 'API key is missing' },
+        { status: 400 }
+      );
+    }
+
     const response = await fetch('https://api.x.ai/v1/chat/completions', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
+        'Authorization': `Bearer ${effectiveApiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         model: "grok-beta",
-        messages: messages, // Use the actual messages from the client
+        messages: messages,
         temperature: 0.7,
         max_tokens: 800,
       }),

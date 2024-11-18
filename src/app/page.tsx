@@ -5,18 +5,17 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
-// Import the Message type if needed
 import type { Message } from 'ai'
 
 export default function Chat() {
-  // Remove the useChat hook and use useState instead
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [apiKey, setApiKey] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (input.trim() === '') return; // Prevent sending empty messages
+    if (input.trim() === '') return;
 
     const userMessage: Message = { id: Date.now().toString(), role: 'user', content: input };
     setMessages(prev => [...prev, userMessage]);
@@ -29,7 +28,10 @@ export default function Chat() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ messages: [...messages, userMessage] }),
+        body: JSON.stringify({
+          messages: [...messages, userMessage],
+          apiKey: apiKey.trim() || undefined,
+        }),
       });
 
       if (!response.ok) {
@@ -37,7 +39,7 @@ export default function Chat() {
         throw new Error(errorData.error || 'Failed to get response from AI');
       }
 
-      const aiMessage: Message = await response.json(); // Explicitly type as Message
+      const aiMessage: Message = await response.json();
       console.log('AI Response:', aiMessage);
       setMessages(prev => [...prev, aiMessage]);
     } catch (error) {
@@ -62,6 +64,7 @@ export default function Chat() {
           ))}
           {isLoading && <div className="text-gray-500">AI is typing...</div>}
         </ScrollArea>
+      
       </CardContent>
       <CardFooter>
         <form
@@ -77,6 +80,7 @@ export default function Chat() {
           <Button type="submit" disabled={isLoading}>Send</Button>
         </form>
       </CardFooter>
+
     </Card>
   )
 }
