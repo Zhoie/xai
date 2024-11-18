@@ -1,4 +1,10 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# XAI API Testing Project
+
+This project is designed to test the capabilities of XAI API and is optimized for deployment on Vercel. Built with [Next.js](https://nextjs.org).
+
+## Project Overview
+
+This application serves as a testing ground for XAI API integration and showcases its capabilities.
 
 ## Getting Started
 
@@ -20,6 +26,23 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Environment Variables
+
+To use the XAI API, you need to set up an environment variable for the API key. You can obtain your `XAI_API_KEY` from [x.ai](https://x.ai).
+
+Create a `.env.local` file in the root of your project and add the following line:
+
+```
+XAI_API_KEY=your_api_key_here
+```
+
+## XAI API Testing
+
+This project includes:
+- API endpoint testing
+- Integration with Vercel deployment
+- XAI functionality demonstration
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
@@ -31,6 +54,6 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is specifically configured for Vercel deployment, ensuring optimal performance for XAI API testing.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
