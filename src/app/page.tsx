@@ -74,13 +74,13 @@ export default function Chat() {
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Say something..."
+            placeholder="Say something...."
             className="flex-grow"
           />
           <Button type="submit" disabled={isLoading}>Send</Button>
         </form>
       </CardFooter>
-
+  
     </Card>
   )
 }
