@@ -5,13 +5,17 @@ import { Button } from "@/app/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/app/components/ui/card"
 import { Input } from "@/app/components/ui/input"
 import { ScrollArea } from "@/app/components/ui/scroll-area"
-import type { Message } from 'ai'
+
+type Message = {
+  id: string
+  role: 'user' | 'assistant'
+  content: string
+}
 
 export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [apiKey, setApiKey] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,7 +34,6 @@ export default function Chat() {
         },
         body: JSON.stringify({
           messages: [...messages, userMessage],
-          apiKey: apiKey.trim() || undefined,
         }),
       });
 
