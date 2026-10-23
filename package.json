@@ -6,7 +6,9 @@
     "dev": "node --no-deprecation ./node_modules/.bin/next dev",
     "build": "node --no-deprecation ./node_modules/.bin/next build",
     "start": "node --no-deprecation ./node_modules/.bin/next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test:security": "node --test scripts/test-braces-security.mjs",
+    "prebuild": "node --test scripts/test-braces-security.mjs"
   },
   "dependencies": {
     "@radix-ui/react-scroll-area": "^1.2.1",
@@ -14,7 +16,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.460.0",
-    "next": "^16.3.0",
+    "next": "16.4.2",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "tailwind-merge": "^2.5.4",
@@ -25,12 +27,17 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "eslint": "^9.39.5",
-    "eslint-config-next": "16.3.0",
-    "postcss": "^8",
+    "eslint-config-next": "16.4.2",
+    "postcss": "8.5.31",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "braces": "file:./vendor/braces-security/braces-security.tgz"
   },
   "engines": {
     "node": ">=24.22.1 <25"
+  },
+  "overrides": {
+    "postcss-selector-parser": "7.1.7",
+    "braces": "$braces"
   }
 }
